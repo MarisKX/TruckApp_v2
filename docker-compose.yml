@@ -3,12 +3,12 @@ version: "3.9"
 services:
   app:
     build:
-      context: .
+      context: ./django_truckapp
       args:
        - DEV=true
     ports:
-      - "8050:8050"
+      - "8020:8020"
     volumes:
-      - ./template:/template
+      - ./django_truckapp:/django_truckapp
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8050"
+      sh -c "python manage.py runserver 0.0.0.0:8020"

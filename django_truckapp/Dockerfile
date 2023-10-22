@@ -1,13 +1,14 @@
-FROM python:3.9-alpine3.13
+FROM python:3.11-alpine3.18
 LABEL maintainer="mariskx"
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
-COPY ./template /template
+COPY . /django_truckapp
 
-WORKDIR /template
-EXPOSE 8050
+WORKDIR /django_truckapp
+
+EXPOSE 8020
 
 ARG DEV=false
 
