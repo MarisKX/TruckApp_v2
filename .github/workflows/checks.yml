@@ -15,6 +15,8 @@
             password: ${{ secrets.DOCKERHUB_TOKEN }}
         - name: Checkout
           uses: actions/checkout@v2
+        - name: Create Docker Network
+          run: docker network create truckapp-network
         - name: Test
           run: docker-compose run --rm app sh -c "python manage.py test"
         - name: Lint
