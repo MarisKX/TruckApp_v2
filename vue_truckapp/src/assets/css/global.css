@@ -1,0 +1,127 @@
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+@import '@/assets/css/fonts.css';
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 0;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 2;  /* Ensure nav is above the backdrop */
+}
+
+body {
+  margin: 0;
+  background-image: url("@/assets/static_images/kenwortht680sleeper.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;  /* Add this line */
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+
+#app {
+  font-family: Acme, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  overflow: hidden;
+}
+
+.main {
+  width: 75%;
+  padding: 1%;
+  margin: 4% auto;
+  margin-top: 100px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  position: relative;  /* Establishes a stacking context */
+  z-index: 1;  /* Ensures content is displayed above backdrop */
+  overflow-y: auto;  /* Allows vertical scrolling */
+  max-height: calc(100% - 80px);
+}
+
+.login {
+  width: 50%;
+  padding: 20px;
+  margin: 10% auto;
+  background: white;
+  opacity: 0.6;
+  border-radius: 12px;
+}
+.color-square {
+  width: 22%;
+  height: 22px;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+}
+.table-container {
+  display: flex;
+  justify-content: center;
+}
+a {
+  color: #2c3e50;
+  text-decoration: none;
+}
+.up-arrow,
+.down-arrow {
+  font-size: 0.65em;
+}
+.bubble {
+  width: 40px;
+  height: 40px;
+  border-radius: 30% 30% 0 30%;
+  background-color: grey;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px 55px;
+}
+.bubble:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent transparent transparent transparent;
+  transition: border-width 0.3s;
+}
+.bubble:hover:before {
+  border-width: 0 30px 30px 0;
+}
+.tooltip {
+  position: absolute;
+  bottom: 84%;
+  left: 10%;
+  transform: translateX(-50%);
+  background-color: #555;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+.content-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

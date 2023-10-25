@@ -27,6 +27,26 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["maris.com", "127.0.0.1", ]
 
+SSL_ENABLED = True
+
+CORS_ALLOWED_ORIGINS = [
+    "https://maris.com:8025",
+    "https://localhost:8025",
+]
+
+CORS_ORIGIN_WHITELIST = [
+    "https://maris.com:8025",  # Vue's address
+    "https://maris.com:8020",  # Django's address
+    "https://localhost:8025",
+    "https://localhost:8020",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://maris.com:8025",  # Vue's address
+    "https://maris.com:8020",  # Django's address
+]
 
 # Application definition
 
@@ -37,11 +57,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Add Ons:
+    "django_extensions",
+    'rest_framework',
+    'rest_framework.authtoken',
+    'drf_spectacular',
+    'corsheaders',
     # Custom apps:
     'core',
+    'user',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'user.middlewares.TokenExpiryMiddleware',
 ]
 
 ROOT_URLCONF = 'django_truckapp.urls'
@@ -127,3 +156,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'core.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'COMPONENT_SPLIT_REQUEST': True,
+}
